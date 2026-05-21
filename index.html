@@ -1,279 +1,210 @@
 <!doctype html>
+
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Sapphire Multiverse — Studio Portal (Q44)</title>
 
-  <!-- Q44 typography stack -->
-  https://fonts.googleapis.com
-  https://fonts.gstatic.com
-  https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syncopate:wght@400;700&family=Space+Mono:wght@400;700&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap
+  <meta charset="utf-8" />
 
-  ./styles.css
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>Sapphire Q44 • Multiverse</title>
+
+  <link rel="stylesheet" href="./styles.css" />
+
 </head>
 
 <body>
-  <!-- TOP RAIL -->
-  <header class="top-rail">
-    <div class="top-left">
-      <div class="brand-mark">
-        <span class="brand-dot"></span>
-        <span class="impact brand-title">SAPPHIRE MULTIVERSE</span>
-      </div>
 
-      <div class="tech eyebrow">
-        Q44 • FULL PRODUCTION STUDIO • HOLLYWOODIMAGING.STUDIO
-      </div>
-    </div>
 
-    <div class="top-center">
-      <div class="command-hint tech">
-        Press <span class="kbd">Ctrl</span> + <span class="kbd">K</span> (Command Bar)
-      </div>
-    </div>
+  <!-- Top rail -->
 
-    <div class="top-right">
-      <div class="role-badge" id="roleBadge">
-        <div class="tech micro">ROLE</div>
-        <div class="impact role">OWNER</div>
-        <div class="mono micro dim" id="ownerEmail">gtamayo36@gmail.com</div>
-      </div>
+  <header class="toprail">
 
-      <div class="status-strip">
-        <div class="status-pill ok">
-          <span class="dot"></span><span class="tech micro">AWAKE</span>
-        </div>
-        <div class="status-pill teal">
-          <span class="tech micro">Q44</span>
-        </div>
-        <div class="status-pill ember">
-          <span class="tech micro">★44</span>
-        </div>
-      </div>
-    </div>
-  </header>
+    <div class="brand">
 
-  <!-- MAIN GRID (3 / 6 / 3 columns) -->
-  <main class="portal-grid">
-    <!-- LEFT PANEL -->
-    <aside class="panel left">
-      <section class="panel-block">
-        <div class="panel-head">
-          <div class="tech section-label">QUOTA</div>
-          <div class="mono micro dim" id="quotaText">OWNER BYPASS ACTIVE (UI)</div>
-        </div>
+      <div class="brand-name">Sapphire Q44</div>
 
-        <div class="quota-card">
-          <div class="quota-row">
-            <div class="mono micro dim">GENERATIONS</div>
-            <div class="mono micro teal" id="quotaCount">∞</div>
-          </div>
-          <div class="quota-bar">
-            <div class="quota-fill owner-rainbow" style="width:100%"></div>
-          </div>
-          <div class="mono micro ember">★ FREE RENDER · OWNER BYPASS ACTIVE (UI)</div>
-        </div>
-      </section>
+      <div class="brand-sub">Multiverse • Standalone Studio</div>
 
-      <section class="panel-block">
-        <div class="panel-head">
-          <div class="tech section-label">SCENES</div>
-          <div class="mono micro dim">MULTI‑PANORAMA</div>
-        </div>
+    </div>
 
-        <div class="scene-list" id="sceneList"></div>
 
-        <div class="panel-actions">
-          <button class="btn" id="btnPrevScene">Prev</button>
-          <button class="btn" id="btnNextScene">Next</button>
-          <button class="btn primary" id="btnAddScene">Add</button>
-          <input id="sceneFile" type="file" accept="image/*" hidden />
-        </div>
-      </section>
+    <div class="toprail-right">
 
-      <section class="panel-block">
-        <div class="panel-head">
-          <div class="tech section-label">LOG</div>
-          <div class="mono micro dim">SYSTEM EVENTS</div>
-        </div>
+      <div class="pill teal">Q44</div>
 
-        <div class="log" id="log"></div>
-      </section>
-    </aside>
+      <div class="pill orchid">SAPPHIRE</div>
 
-    <!-- CENTER VIEWPORT -->
-    <section class="center">
-      <div class="viewport-shell">
-        <div class="viewport-hud">
-          <div class="hud-left">
-            <div class="badge tech">STUDIO VIEWPORT</div>
-            <div class="mono micro dim" id="sceneReadout">Scene: —</div>
-            <div class="mono micro dim" id="gyroReadout">α: —  β: —  γ: —</div>
-          </div>
+      <div class="pill mint">LIVE</div>
 
-          <div class="hud-right">
-            <button class="btn small" id="btnGyro">Enable Gyro</button>
-            <button class="btn small" id="btnCenter">Center</button>
-            <button class="btn small primary" id="btnExport">Export</button>
-          </div>
-        </div>
+    </div>
 
-        <div class="viewport-stage" id="viewportStage">
-          <canvas id="panoCanvas" class="pano"></canvas>
-          <div class="vignette"></div>
-          <div class="grain"></div>
-        </div>
+  </header>
 
-        <div class="transport">
-          <button class="btn small" id="btnPlay">Play</button>
-          <button class="btn small" id="btnPause">Pause</button>
-          <button class="btn small" id="btnStop">Stop</button>
 
-          <div class="mono micro dim" id="timeReadout">00:00 / 00:05</div>
-          <input id="timeline" class="timeline" type="range" min="0" max="120" value="0" />
-        </div>
-      </div>
-    </section>
+  <!-- Main layout -->
 
-    <!-- RIGHT PANEL -->
-    <aside class="panel right">
-      <section class="panel-block">
-        <div class="panel-head">
-          <div class="tech section-label">PRIMITIVES</div>
-          <div class="mono micro dim">Q44 SIX FACULTIES (UI)</div>
-        </div>
+  <main class="shell">
 
-        <div class="primitive-grid">
-          <button class="oring teal" data-prim="COG">
-            <div class="tech micro">COG</div>
-            <div class="impact prim-name">COGNITION</div>
-            <div class="mono micro dim">Reasoning core</div>
-          </button>
 
-          <button class="oring orchid" data-prim="VIS">
-            <div class="tech micro">VIS</div>
-            <div class="impact prim-name">VISION</div>
-            <div class="mono micro dim">Spatial parsing</div>
-          </button>
+    <!-- Left: minimal tool strip -->
 
-          <button class="oring ember" data-prim="MOT">
-            <div class="tech micro">MOT</div>
-            <div class="impact prim-name">MOTION</div>
-            <div class="mono micro dim">Temporal flow</div>
-          </button>
+    <aside class="leftstrip">
 
-          <button class="oring teal" data-prim="VOX">
-            <div class="tech micro">VOX</div>
-            <div class="impact prim-name">VOICE</div>
-            <div class="mono micro dim">Sonic intelligence</div>
-          </button>
+      <button class="iconbtn" data-action="mode" title="Mode">
 
-          <button class="oring orchid" data-prim="MEM">
-            <div class="tech micro">MEM</div>
-            <div class="impact prim-name">MEMORY</div>
-            <div class="mono micro dim">Session continuity</div>
-          </button>
+        <span class="dot teal"></span>
 
-          <button class="oring mint" data-prim="DEP">
-            <div class="tech micro">DEP</div>
-            <div class="impact prim-name">DEPLOY</div>
-            <div class="mono micro dim">Channel dispatch</div>
-          </button>
-        </div>
-      </section>
+        <span class="lbl">MODE</span>
 
-      <section class="panel-block">
-        <div class="panel-head">
-          <div class="tech section-label">STUDIO CONTROLS</div>
-          <div class="mono micro dim">CAMERA / LOOK / FADE</div>
-        </div>
+      </button>
 
-        <div class="control">
-          <label class="mono micro dim">Yaw <span class="mono micro teal" id="yawVal">0</span>°</label>
-          <input id="yaw" type="range" min="-180" max="180" value="0">
-        </div>
 
-        <div class="control">
-          <label class="mono micro dim">Pitch <span class="mono micro teal" id="pitchVal">0</span>°</label>
-          <input id="pitch" type="range" min="-75" max="75" value="0">
-        </div>
+      <button class="iconbtn" data-action="scene" title="Scenes">
 
-        <div class="control">
-          <label class="mono micro dim">Zoom <span class="mono micro teal" id="zoomVal">1.00</span>x</label>
-          <input id="zoom" type="range" min="0.7" max="1.5" step="0.01" value="1.00">
-        </div>
+        <span class="dot orchid"></span>
 
-        <div class="control">
-          <label class="mono micro dim">Scene Fade <span class="mono micro teal" id="fadeVal">900</span>ms</label>
-          <input id="fadeMs" type="range" min="0" max="2500" step="50" value="900">
-        </div>
+        <span class="lbl">SCENE</span>
 
-        <div class="control">
-          <label class="mono micro dim">Mode</label>
-          <div class="mode-row">
-            <button class="chip active" data-mode="cinematic">Cinematic</button>
-            <button class="chip" data-mode="realistic">Realistic</button>
-            <button class="chip" data-mode="graphics">3D</button>
-            <button class="chip" data-mode="hyper">Hyper</button>
-          </div>
-        </div>
+      </button>
 
-        <div class="control">
-          <label class="mono micro dim">Grade</label>
-          <div class="grade-grid">
-            <div>
-              <label class="mono micro dim">Contrast <span class="mono micro teal" id="contrastVal">1.10</span></label>
-              <input id="contrast" type="range" min="0.7" max="1.6" step="0.01" value="1.10">
-            </div>
-            <div>
-              <label class="mono micro dim">Sat <span class="mono micro teal" id="satVal">1.15</span></label>
-              <input id="sat" type="range" min="0" max="2.0" step="0.01" value="1.15">
-            </div>
-            <div>
-              <label class="mono micro dim">Hue <span class="mono micro teal" id="hueVal">0</span>°</label>
-              <input id="hue" type="range" min="-60" max="60" step="1" value="0">
-            </div>
-          </div>
-        </div>
 
-        <button class="btn primary wide" id="btnDownloadJSON">Download Project JSON</button>
-      </section>
-    </aside>
-  </main>
+      <button class="iconbtn" data-action="grade" title="Grade">
 
-  <!-- BOTTOM CONSCIOUSNESS LOOP -->
-  <footer class="loop-strip">
-    <div class="loop">
-      <div class="loop-step active" data-step="AWAKEN">AWAKEN</div>
-      <div class="loop-arrow"></div>
-      <div class="loop-step" data-step="PERCEIVE">PERCEIVE</div>
-      <div class="loop-arrow"></div>
-      <div class="loop-step" data-step="RESOLVE">RESOLVE</div>
-      <div class="loop-arrow"></div>
-      <div class="loop-step" data-step="MANIFEST">MANIFEST</div>
-    </div>
-    <div class="mono micro dim">Sapphire Multiverse • Q44 cockpit UI</div>
-  </footer>
+        <span class="dot ember"></span>
 
-  <!-- COMMAND BAR -->
-  <div class="cmdbar-backdrop" id="cmdBackdrop" hidden></div>
-  <div class="cmdbar" id="cmdbar" hidden>
-    <div class="cmd-head">
-      <div class="tech section-label">COMMAND BAR</div>
-      <div class="mono micro dim">type a command • esc to close</div>
-    </div>
-    <input class="cmd-input mono" id="cmdInput" placeholder="Enter the core… (ex: next scene, center, gyro, export)" />
-    <div class="cmd-list mono micro" id="cmdList">
-      <div class="cmd-item">next scene</div>
-      <div class="cmd-item">prev scene</div>
-      <div class="cmd-item">center</div>
-      <div class="cmd-item">gyro</div>
-      <div class="cmd-item">export json</div>
-    </div>
-  </div>
+        <span class="lbl">GRADE</span>
 
-  ./app.jsscript>
+      </button>
+
+
+      <button class="iconbtn" data-action="export" title="Export">
+
+        <span class="dot mint"></span>
+
+        <span class="lbl">EXPORT</span>
+
+      </button>
+
+    </aside>
+
+
+    <!-- Center: cinematic viewport -->
+
+    <section class="viewportWrap">
+
+      <div class="viewportHud">
+
+        <div class="hud-left">
+
+          <div class="hudline">▸ STATE <span id="stateText" class="tealText">AWAKE</span></div>
+
+          <div class="hudline">▸ SCENE <span id="sceneText" class="boneText">Sapphire Drift</span></div>
+
+        </div>
+
+
+        <div class="hud-right">
+
+          <button class="btn" id="btnCenter">Center</button>
+
+          <button class="btn primary" id="btnPulse">Pulse</button>
+
+        </div>
+
+      </div>
+
+
+      <div class="viewportStage" id="viewportStage">
+
+        <canvas id="render" class="render"></canvas>
+
+        <div class="vignette"></div>
+
+        <div class="grain"></div>
+
+        <div class="corner tl"></div><div class="corner tr"></div>
+
+        <div class="corner bl"></div><div class="corner br"></div>
+
+      </div>
+
+
+      <div class="bottomBar">
+
+        <div class="phase">
+
+          <span class="phaseDot mint"></span>
+
+          <span id="phaseText">AWAKEN → PERCEIVE → RESOLVE → MANIFEST</span>
+
+        </div>
+
+        <input id="energy" class="slider" type="range" min="0" max="100" value="44" />
+
+        <div class="mono" id="energyText">ENERGY 44</div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Right: thin panel (context) -->
+
+    <aside class="rightpanel">
+
+      <div class="panelHead">
+
+        <div class="panelTitle">Sapphire Controls</div>
+
+        <div class="panelSub">Minimal. Cinematic. Real.</div>
+
+      </div>
+
+
+      <div class="panelBlock">
+
+        <label>Bloom <span id="bloomVal" class="tealText">0.35</span></label>
+
+        <input id="bloom" class="slider" type="range" min="0" max="1" step="0.01" value="0.35" />
+
+      </div>
+
+
+      <div class="panelBlock">
+
+        <label>Drift <span id="driftVal" class="tealText">0.18</span></label>
+
+        <input id="drift" class="slider" type="range" min="0" max="0.6" step="0.01" value="0.18" />
+
+      </div>
+
+
+      <div class="panelBlock">
+
+        <label>Chromatic <span id="chrVal" class="orchidText">0.22</span></label>
+
+        <input id="chromatic" class="slider" type="range" min="0" max="0.8" step="0.01" value="0.22" />
+
+      </div>
+
+
+      <div class="panelNote">
+
+        This is the first Sapphire Q44 screen. Next: scene slots + real assets.
+
+      </div>
+
+    </aside>
+
+
+  </main>
+
+
+  <script src="./app.js"></script>
+
 </body>
+
 </html>
 
