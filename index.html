@@ -1,24 +1,110 @@
-<div style="background:#f2f2f2;padding:26px;border-radius:16px;color:#222;font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.7;">
-  <strong>KNOCKSSTUDiOS</strong> is a full cinematic‑technology ecosystem powered by the 
-  <strong>HYPER‑CINEMA‑ENGINE 360</strong>, a WebGL real‑time engine driving the 
-  <strong>HeroGyro panoCanvas 360</strong> environment for immersive, gyroscope‑accurate, 
-  film‑grade panoramic experiences. Visual fidelity is driven by the <strong>Quantum 44 Teal</strong> 
-  pipeline—multi‑lens HDR capture, depth‑layer fusion, GPU stitching, and teal‑toned cinematic grading—producing 
-  the signature KNOCKS look: high‑contrast, atmospheric, micro‑detailed 360° imagery with film‑grade color science.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KNOCKSSTUDiOS — Q44 Engine</title>
 
-  The identity is unified by the <strong>Q44 Color System</strong>: Quantum Teal (#00B4D8), Plasma Orchid (#7B2CBF), 
-  Electric Ember (#FFD60A), Lava (#FF8800), Ion Mint (#2D6A4F), Ion Mint Hi (#52FFB0), Astro Noir (#1B1B1E), 
-  Obsidian (#0A0A14), and Bone (#F4F1EA). These tones define the glow, UI accents, lighting behavior, and cinematic 
-  atmosphere across all modules.
+<style>
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, sans-serif;
+    background:
+      radial-gradient(900px 600px at 50% 10%, rgba(0,180,216,.14), transparent 55%),
+      radial-gradient(900px 600px at 90% 35%, rgba(123,44,191,.10), transparent 60%),
+      radial-gradient(900px 600px at 10% 85%, rgba(255,214,10,.07), transparent 60%),
+      #0A0A14;
+    color: #fff;
+  }
 
-  <br><br>
-  <strong>ECOSYSTEM MODULES</strong><br>
-  <strong>Radio</strong> — cinematic audio + spatial mixes.<br>
-  <strong>Store</strong> — gear, presets, LUTs, AI packs, Q44 tools.<br>
-  <strong>School</strong> — film, music, AI, 360°, engine training.<br>
-  <strong>Gallery</strong> — 360° scenes, cinematic stills, AI imaging.<br>
-  <strong>Studio</strong> — full production across all media.<br>
-  <strong>Engine</strong> — HYPER‑CINEMA‑ENGINE 360 core.<br>
-  <strong>AI</strong> — neural imaging + Q44‑graded outputs.<br>
-  <strong>360</strong> — immersive panoramic worlds with HDR depth.
+  .wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 20px;
+  }
+
+  .glass {
+    backdrop-filter: blur(30px) saturate(185%);
+    -webkit-backdrop-filter: blur(30px) saturate(185%);
+    background: rgba(255,255,255,0.10);
+    border-radius: 28px;
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 40px;
+    box-shadow: 0 0 80px rgba(0,180,216,0.28);
+    line-height: 1.75;
+    font-size: 15px;
+  }
+
+  h1, h2 {
+    font-weight: 900;
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+
+  .modules {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px;
+  }
+
+  .module {
+    background: rgba(255,255,255,0.08);
+    border-radius: 18px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.18);
+  }
+
+  .module strong {
+    font-size: 18px;
+  }
+
+  @media(max-width: 768px) {
+    .modules {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+  <div class="glass">
+    <h1>KNOCKSSTUDiOS</h1>
+    <p>
+      KNOCKSSTUDiOS is a full cinematic‑technology ecosystem powered by the 
+      <strong>HYPER‑CINEMA‑ENGINE 360</strong>, a WebGL real‑time engine driving the 
+      <strong>HeroGyro panoCanvas 360</strong> environment for immersive, gyroscope‑accurate, 
+      film‑grade panoramic experiences.
+    </p>
+
+    <p>
+      Visual fidelity is driven by the <strong>Quantum 44 Teal</strong> pipeline—multi‑lens HDR capture, 
+      depth‑layer fusion, GPU stitching, and teal‑toned cinematic grading—producing the signature KNOCKS look: 
+      high‑contrast, atmospheric, micro‑detailed 360° imagery with film‑grade color science.
+    </p>
+
+    <p>
+      The identity is unified by the <strong>Q44 Color System</strong>: Quantum Teal (#00B4D8), Plasma Orchid (#7B2CBF), 
+      Electric Ember (#FFD60A), Lava (#FF8800), Ion Mint (#2D6A4F), Ion Mint Hi (#52FFB0), Astro Noir (#1B1B1E), 
+      Obsidian (#0A0A14), and Bone (#F4F1EA).
+    </p>
+
+    <h2>Ecosystem Modules</h2>
+
+    <div class="modules">
+      <div class="module"><strong>Radio</strong><br>Cinematic audio + spatial mixes.</div>
+      <div class="module"><strong>Store</strong><br>Gear, presets, LUTs, AI packs, Q44 tools.</div>
+      <div class="module"><strong>School</strong><br>Film, music, AI, 360°, engine training.</div>
+      <div class="module"><strong>Gallery</strong><br>360° scenes, cinematic stills, AI imaging.</div>
+      <div class="module"><strong>Studio</strong><br>Full production across all media.</div>
+      <div class="module"><strong>Engine</strong><br>HYPER‑CINEMA‑ENGINE 360 core.</div>
+      <div class="module"><strong>AI</strong><br>Neural imaging + Q44‑graded outputs.</div>
+      <div class="module"><strong>360</strong><br>Immersive panoramic worlds with HDR depth.</div>
+    </div>
+  </div>
 </div>
+
+</body>
+</html>
