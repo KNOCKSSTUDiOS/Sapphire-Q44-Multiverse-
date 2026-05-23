@@ -1,0 +1,58 @@
+using UnityEngine;
+
+public class QuantumGyroOrbit : MonoBehaviour
+{
+    [Header("Cinematic Target")]
+    public Transform target; // Drag your 3D O-Ring Logo here
+    public float distance = 6.0f; // Distance from the logo
+    public float smoothTime = 12f; // Heavy, cinematic deceleration
+
+    // The baseline rotation for the camera
+    private Quaternion baseRotation = new Quaternion(0, 0, 1, 0);
+    private Quaternion targetRotation;
+
+    void Start()
+    {
+        // Enforcing the 18mm Cinematic Field of View
+        Camera.main.fieldOfView = 18f;
+        
+        // Ensure the void is Astro Noir (#1B1B1E)
+        Camera.main.backgroundColor = new Color(0.106f, 0.106f, 0.118f, 1f);
+        
+        targetRotation = transform.rotation;
+    }
+
+    // This method catches the Alpha/Beta/Gamma math from your index.html
+    public void UpdateGyro(string gyroData)
+    {
+        if (target == null) return;
+
+        string[] values = gyroData.Split(',');
+        if (values.Length == 3)
+        {
+            float alpha = float.Parse(values[0]); // Z-Axis
+            float beta = float.Parse(values[1]);  // X-Axis
+            float gamma = float.Parse(values[2]); // Y-Axis
+
+            // Translate browser orientation math into Unity's 3D coordinate physics
+            Quaternion gyroRotation = Quaternion.Euler(beta, -alpha, -gamma);
+            targetRotation = baseRotation * gyroRotation;
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (target != null)
+        {
+            // 1. Smoothly interpolate the rotation so it doesn't stutter
+            Quaternion currentRot = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * smoothTime);
+
+            // 2. THE ORBIT MATH: Push the camera back from the target based on the new rotation
+            Vector3 position = target.position - (currentRot * Vector3.forward * distance);
+
+            // 3. Apply the final cinematic transformations
+            transform.rotation = currentRot;
+            transform.position = position;
+        }
+    }
+}
