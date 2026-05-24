@@ -1,58 +1,49 @@
-using UnityEngine;
+# =============================================================================
+# NEBULA Multiverse Studio — Nginx Config (Frontend SPA)
+# Architect: KNOCKS
+# =============================================================================
+server {
+    listen 8080;
+    server_name _;
+    root /usr/share/nginx/html;
+    index index.html;
 
-public class QuantumGyroOrbit : MonoBehaviour
-{
-    [Header("Cinematic Target")]
-    public Transform target; // Drag your 3D O-Ring Logo here
-    public float distance = 6.0f; // Distance from the logo
-    public float smoothTime = 12f; // Heavy, cinematic deceleration
+    gzip on;
+    gzip_vary on;
+    gzip_types text/plain text/css application/json application/javascript
+               text/xml application/xml application/xml+rss text/javascript
+               image/svg+xml;
+    gzip_min_length 1024;
 
-    // The baseline rotation for the camera
-    private Quaternion baseRotation = new Quaternion(0, 0, 1, 0);
-    private Quaternion targetRotation;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' /api" always;
 
-    void Start()
-    {
-        // Enforcing the 18mm Cinematic Field of View
-        Camera.main.fieldOfView = 18f;
-        
-        // Ensure the void is Astro Noir (#1B1B1E)
-        Camera.main.backgroundColor = new Color(0.106f, 0.106f, 0.118f, 1f);
-        
-        targetRotation = transform.rotation;
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff2?|ttf|eot)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
     }
 
-    // This method catches the Alpha/Beta/Gamma math from your index.html
-    public void UpdateGyro(string gyroData)
-    {
-        if (target == null) return;
-
-        string[] values = gyroData.Split(',');
-        if (values.Length == 3)
-        {
-            float alpha = float.Parse(values[0]); // Z-Axis
-            float beta = float.Parse(values[1]);  // X-Axis
-            float gamma = float.Parse(values[2]); // Y-Axis
-
-            // Translate browser orientation math into Unity's 3D coordinate physics
-            Quaternion gyroRotation = Quaternion.Euler(beta, -alpha, -gamma);
-            targetRotation = baseRotation * gyroRotation;
-        }
+    location /healthz {
+        return 200 "ok\n";
+        add_header Content-Type text/plain;
     }
 
-    void LateUpdate()
-    {
-        if (target != null)
-        {
-            // 1. Smoothly interpolate the rotation so it doesn't stutter
-            Quaternion currentRot = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * smoothTime);
+    # API proxy to backend (K8s cluster-internal DNS)
+    location /api/ {
+        proxy_pass http://nebula-backend-svc:3000/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 60s;
+    }
 
-            // 2. THE ORBIT MATH: Push the camera back from the target based on the new rotation
-            Vector3 position = target.position - (currentRot * Vector3.forward * distance);
-
-            // 3. Apply the final cinematic transformations
-            transform.rotation = currentRot;
-            transform.position = position;
-        }
+    # SPA fallback
+    location / {
+        try_files $uri $uri/ /index.html;
     }
 }
