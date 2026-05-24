@@ -1,0 +1,32 @@
+# NEBULA Multiverse Studio — ConfigMap | Architect: KNOCKS
+# Replace all REPLACE_WITH_* values before deploying.
+# Sensitive values (keys, passwords) MUST go in Secret, not here.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nebula-config
+  namespace: nebula
+  labels:
+    app.kubernetes.io/part-of: nebula-multiverse-studio
+    app.kubernetes.io/managed-by: knocks-architect
+data:
+  NODE_ENV: "production"
+  LOG_LEVEL: "info"
+  PORT: "3000"
+
+  PRIME_VERSE_ID: "primeverse-001"
+  SHADOW_VERSE_ID: "shadowverse-001"
+  NEON_VERSE_ID:   "neonverse-001"
+  MYTH_VERSE_ID:   "mythverse-001"
+
+  RENDER_ORCHESTRATOR_URL: "http://nebula-render-orchestrator-svc:4000"
+  RENDER_ORCHESTRATOR_TIMEOUT_MS: "30000"
+
+  VITE_API_BASE_URL: "/api"
+  CORS_ORIGIN: "https://REPLACE_WITH_YOUR_DOMAIN"
+
+  ENABLE_TIMELINE_FUSION: "true"
+  ENABLE_MULTIVERSE_ROUTER: "true"
+
+  OTEL_EXPORTER_OTLP_ENDPOINT: "http://otel-collector-svc:4317"
+  OTEL_SERVICE_NAME: "nebula-backend"
