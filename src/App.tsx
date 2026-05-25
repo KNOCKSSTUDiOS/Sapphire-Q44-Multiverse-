@@ -1,24 +1,34 @@
-'use strict';
+import React, { Suspense, lazy } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext'
 
-import React from 'react';
-import { StudioShufflePlayer } from './components/StudioShufflePlayer';
+const LandingPage  = lazy(() => import('./pages/LandingPage'))
+const LoginPage    = lazy(() => import('./pages/LoginPage'))
+const SignupPage   = lazy(() => import('./pages/SignupPage'))
+const PricingPage  = lazy(() => import('./components/PricingPage'))
+const DashboardPage = lazy(() => import('./pages/DashboardPage'))
+const StudioPage   = lazy(() => import('./pages/StudioPage'))
 
-const App: React.FC = () => {
-  return (
-    <div className="app-root">
-      <StudioShufflePlayer />
-      <div className="hero-overlay">
-        <div className="hero-panel">
-          <div className="hero-tag">Quantum‑44</div>
-          <h1 className="hero-title">Teal‑Core Cinematic Engine</h1>
-          <p className="hero-sub">
-            Unity‑grade HDR scenes, 4K→8K upscale, 265M bitrate, live studio shuffle.
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
+const Loader = () => (
+    >div style={{ display:'flex', alignItems:'center', justifyContent:'center', height:'100vh', background:'#000', color:'#00e5ff', fontFamily:'sans-serif', fontSize:'1.2rem' }}>
+    Loading Hollywood Imaging Studio
+  >/div>
+)
 
-export default App;
+const App: React.FC = () => (
+    >AuthProvider>
+      >Suspense fallback={>Loader />}>
+        >Routes>
+          >Route path="/"          element={>LandingPage />} />
+        >Route path="/login"     element={>LoginPage />} />
+        >Route path="/signup"    element={>SignupPage />} />
+        >Route path="/pricing"   element={>PricingPage />} />
+        >Route path="/dashboard" element={>DashboardPage />} />
+        >Route path="/studio"    element={>StudioPage />} />
+        >Route path="*"          element={>Navigate to="/" replace />} />
+      >/Routes>
+    >/Suspense>
+  >/AuthProvider>
+)
 
+export default App
