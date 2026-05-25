@@ -1,9 +1,0 @@
-# NEBULA Multiverse Studio — Kubernetes Namespace | Architect: KNOCKS
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: nebula
-  labels:
-    app.kubernetes.io/part-of: nebula-multiverse-studio
-    app.kubernetes.io/managed-by: knocks-architect
-    environment: production
